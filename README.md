@@ -31,3 +31,12 @@
 📁 `data/` → Dataset y resultados de anomalías  
 
 ---
+
+
+## **⚙️ Instalación y Configuración**  
+
+### **1️⃣ Clonar el Repositorio**  
+```bash
+git clone https://github.com/tuusuario/Network-Anomaly-Detection-PBSCAN.git
+cd Network-Anomaly-Detection-PBSCAN
+```
