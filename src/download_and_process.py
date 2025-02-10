@@ -4,57 +4,57 @@ import gzip
 import shutil
 import pandas as pd
 
-# 📌 URLs for the KDD99 dataset
+# 📌 URLs del dataset KDD99
 URL_DATA = "https://kdd.ics.uci.edu/databases/kddcup99/kddcup.data_10_percent.gz"
 URL_NAMES = "https://kdd.ics.uci.edu/databases/kddcup99/kddcup.names"
 
-# 📂 Directories
+# 📂 Directorios
 DATA_DIR = os.path.abspath("data/")
 RAW_FILE_GZ = os.path.join(DATA_DIR, "kddcup.data_10_percent.gz")
 RAW_FILE = os.path.join(DATA_DIR, "kddcup.data_10_percent")
 CSV_FILE = os.path.join(DATA_DIR, "kddcup_data.csv")
 
-# 📌 Create "data" directory if it does not exist
+# 📌 Crear carpeta "data" si no existe
 if not os.path.exists(DATA_DIR):
-    print("📂 Creating data/ directory")
+    print("📂 Creando carpeta data/")
     os.makedirs(DATA_DIR, exist_ok=True)
 else:
-    print("✅ data/ directory already exists")
+    print("✅ Carpeta data/ ya existe")
 
-# 🔽 Step 1: Download files
+# 🔽 Paso 1: Descargar los archivos
 def download_file(url, output_file):
     if os.path.exists(output_file):
-        print(f"✅ File already downloaded: {output_file}")
+        print(f"✅ Archivo ya descargado: {output_file}")
         return
     
-    print(f"🔽 Downloading {url}...")
+    print(f"🔽 Descargando {url}...")
     response = requests.get(url, stream=True)
     
     if response.status_code == 200:
         with open(output_file, "wb") as f:
             shutil.copyfileobj(response.raw, f)
-        print(f"✅ Download complete: {output_file}")
+        print(f"✅ Descarga completa: {output_file}")
     else:
-        print(f"❌ ERROR: Could not download {url}. Status code {response.status_code}")
+        print(f"❌ ERROR: No se pudo descargar {url}. Código {response.status_code}")
 
-# 🗜️ Step 2: Decompress .gz file
+# 🗜️ Paso 2: Descomprimir el archivo .gz
 def decompress_gz(input_file, output_file):
     if os.path.exists(output_file):
-        print(f"✅ File already decompressed: {output_file}")
+        print(f"✅ Archivo ya descomprimido: {output_file}")
         return
     
-    print("🗜️ Decompressing file...")
+    print("🗜️ Descomprimiendo archivo...")
     if os.path.exists(input_file):
         with gzip.open(input_file, 'rb') as f_in:
             with open(output_file, 'wb') as f_out:
                 shutil.copyfileobj(f_in, f_out)
-        print(f"✅ File decompressed: {output_file}")
+        print(f"✅ Archivo descomprimido: {output_file}")
     else:
-        print(f"❌ ERROR: File not found {input_file}")
+        print(f"❌ ERROR: No se encontró {input_file}")
 
-# 📊 Step 3: Convert to CSV with column names
+# 📊 Paso 3: Convertir a CSV con nombres de columnas
 def convert_to_csv(input_file, output_csv):
-    print("📊 Processing data and converting to CSV...")
+    print("📊 Procesando datos y convirtiendo a CSV...")
 
     columns = [
         "duration", "protocol_type", "service", "flag", "src_bytes", "dst_bytes",
@@ -75,25 +75,25 @@ def convert_to_csv(input_file, output_csv):
     if os.path.exists(input_file):
         df = pd.read_csv(input_file, header=None, names=columns)
         df.to_csv(output_csv, index=False)
-        print(f"✅ Data saved in {output_csv}")
+        print(f"✅ Datos guardados en {output_csv}")
     else:
-        print(f"❌ ERROR: File not found {input_file}")
+        print(f"❌ ERROR: No se encontró {input_file}")
 
-# 🛠️ Step 4: Execute the complete pipeline
+# 🛠️ Paso 4: Ejecutar el pipeline completo
 if __name__ == "__main__":
-    print("🚀 Starting download and conversion process...")
+    print("🚀 Iniciando proceso de descarga y conversión...")
 
-    # 1. Download files
+    # 1. Descargar los archivos
     download_file(URL_DATA, RAW_FILE_GZ)
     download_file(URL_NAMES, os.path.join(DATA_DIR, "kddcup.names"))
 
-    # 2. Decompress the dataset
+    # 2. Descomprimir el dataset
     decompress_gz(RAW_FILE_GZ, RAW_FILE)
 
-    # 3. Convert to CSV
+    # 3. Convertir a CSV
     convert_to_csv(RAW_FILE, CSV_FILE)
 
-    # 4. Remove temporary files (optional)
+    # 4. Eliminar archivos temporales (opcional)
     if os.path.exists(RAW_FILE): os.remove(RAW_FILE)
     if os.path.exists(RAW_FILE_GZ): os.remove(RAW_FILE_GZ)
-    print("🗑️ Temporary files deleted.")
+    print("🗑️ Archivos temporales eliminados.")
