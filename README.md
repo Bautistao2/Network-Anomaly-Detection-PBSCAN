@@ -178,13 +178,13 @@ A partir del análisis de anomalías y la **matriz de correlación**, encontramo
 
 ---
 
-## 🔍 1️⃣ `dst_bytes` es la variable más impactada en anomalías (Diferencia: +1026.59)
+# 🔍 1️⃣ `dst_bytes` es la variable más impactada en anomalías (Diferencia: +1026.59)
 
-### 📌 **Hallazgo:**
+ 📌 **Hallazgo:**
 - `dst_bytes` es la variable con **mayor diferencia** entre datos normales y anomalías.
 - **En la matriz de correlación**, `dst_bytes` tiene **correlaciones negativas con otras variables**, como `dst_host_count` (-0.78) y `src_bytes` (-0.53).
 
-### ✅ **Interpretación:**
+ ✅ **Interpretación:**
 - **Correlación negativa con `dst_host_count` (-0.78):**
     - Cuando `dst_bytes` es alto, el número de hosts de destino tiende a ser menor.
     - Esto sugiere **ataques dirigidos a pocos servidores específicos con tráfico masivo** (posible exfiltración de datos o DDoS selectivo).
@@ -192,78 +192,78 @@ A partir del análisis de anomalías y la **matriz de correlación**, encontramo
     - Cuando los bytes enviados (`src_bytes`) son altos, los bytes recibidos (`dst_bytes`) tienden a ser bajos.
     - **Posible indicio de escaneo de red**: muchas solicitudes salientes con pocas respuestas grandes.
 
-### 🛠 **Recomendaciones:**
+# 🛠 **Recomendaciones:**
 - **Monitorear tráfico de salida en servidores con alto `dst_bytes` y bajo `src_bytes`.**
 - **Investigar tráfico dirigido a pocos hosts con alta transferencia de datos** para detectar ataques de extracción de información.
 
 ---
 
-## 🔍 2️⃣ `dst_host_count` sugiere ataques dirigidos (Diferencia: +66.09)
+# 🔍 2️⃣ `dst_host_count` sugiere ataques dirigidos (Diferencia: +66.09)
 
-### 📌 **Hallazgo:**
+ 📌 **Hallazgo:**
 - `dst_host_count` representa **el número de hosts con los que se comunica una IP**.
 - **En la matriz de correlación**, `dst_host_count` tiene una **correlación negativa con `dst_bytes`**.
 
-### ✅ **Interpretación:**
+ ✅ **Interpretación:**
 - **Posible escaneo de red selectivo:**
     - Si un atacante explora varios hosts (`dst_host_count` alto) pero sin enviar muchos datos (`dst_bytes` bajo), es posible que esté buscando vulnerabilidades en múltiples servidores sin realizar ataques activos.
 - **Posible ataque DDoS focalizado:**
     - Si `dst_host_count` es alto y `dst_bytes` también, podría indicar un botnet atacando múltiples hosts con alto volumen de tráfico.
 
-### 🛠 **Recomendaciones:**
+ 🛠 **Recomendaciones:**
 - **Detectar IPs con `dst_host_count` inusualmente alto y revisar qué tipo de tráfico están enviando.**
 - **Comparar si estos patrones aparecen en picos de actividad sospechosos.**
 
 ---
 
-## 🔍 3️⃣ `duration` es mucho mayor en anomalías (+47.98 seg.)
+# 🔍 3️⃣ `duration` es mucho mayor en anomalías (+47.98 seg.)
 
-### 📌 **Hallazgo:**
+ 📌 **Hallazgo:**
 - En anomalías, la duración de conexión es **significativamente más larga** que en el tráfico normal.
 - **En la matriz de correlación, `duration` no tiene correlaciones fuertes con otras variables**, lo que sugiere que **las conexiones anómalas son independientes de otras métricas de tráfico**.
 
-### ✅ **Interpretación:**
+ ✅ **Interpretación:**
 - **Conexiones persistentes pueden ser tráfico malicioso oculto**:
     - Una sesión larga podría indicar **una máquina infectada comunicándose con un C2 (Command & Control)** en un ataque de malware.
     - También podría indicar **transferencias de datos grandes y lentas** para evadir detección de DLP (Data Loss Prevention).
 
-### 🛠 **Recomendaciones:**
+🛠 **Recomendaciones:**
 - **Monitorizar conexiones de larga duración en servidores sensibles.**
 - **Relacionar duración con volumen de datos (`dst_bytes` y `src_bytes`) para ver si hay tráfico sospechoso.**
 
 ---
 
-## 🔍 4️⃣ `src_bytes` tiene un comportamiento anómalo en anomalías (+2.60)
+# 🔍 4️⃣ `src_bytes` tiene un comportamiento anómalo en anomalías (+2.60)
 
-### 📌 **Hallazgo:**
+ 📌 **Hallazgo:**
 - `src_bytes` muestra un aumento en anomalías, pero su correlación con `count` en la matriz de correlación es extremadamente alta (0.99).
 
-### ✅ **Interpretación:**
+ ✅ **Interpretación:**
 - **Escaneo de red con muchas solicitudes y pocas respuestas:**
     - La correlación fuerte entre `src_bytes` y `count` indica que los hosts anómalos **generan muchas conexiones enviando datos pequeños**.
     - Este patrón es característico de:
         - **Ataques de fuerza bruta** (muchas solicitudes a diferentes servicios).
         - **Bots probando credenciales en múltiples hosts**.
 
-### 🛠 **Recomendaciones:**
+ 🛠 **Recomendaciones:**
 - **Detectar IPs con tráfico saliente alto (`src_bytes`) y muchas conexiones (`count`).**
 - **Cruzar estos datos con logs de acceso para ver si coinciden con intentos de autenticación fallidos.**
 
 ---
 
-## 🔍 5️⃣ `count` alto en anomalías sugiere actividad automatizada (+0.51)
+# 🔍 5️⃣ `count` alto en anomalías sugiere actividad automatizada (+0.51)
 
-### 📌 **Hallazgo:**
+ 📌 **Hallazgo:**
 - `count` indica la cantidad de conexiones activas.
 - En anomalías, tiene un **valor más alto que en datos normales** y una correlación fuerte con `src_bytes` (0.99).
 
-### ✅ **Interpretación:**
+ ✅ **Interpretación:**
 - **Alta actividad en anomalías con muchas conexiones concurrentes** sugiere:
     - **Fuerza bruta en autenticación** (si coincide con tráfico HTTP o SSH).
     - **Escaneo agresivo de red** para mapear hosts activos.
     - **Actividad de bots** intentando conectarse repetidamente a servicios específicos.
 
-### 🛠 **Recomendaciones:**
+ 🛠 **Recomendaciones:**
 - **Bloquear IPs que generen un número inusual de conexiones en poco tiempo.**
 - **Monitorear logs de autenticación para detectar accesos repetidos desde las mismas IPs.**
 
