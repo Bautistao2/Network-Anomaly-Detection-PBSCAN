@@ -178,7 +178,7 @@ A partir del análisis de anomalías y la **matriz de correlación**, encontramo
 
 ---
 
-# 🔍 1️⃣ `dst_bytes` es la variable más impactada en anomalías (Diferencia: +1026.59)
+### 🔍 1️⃣ `dst_bytes` es la variable más impactada en anomalías (Diferencia: +1026.59)
 
  📌 **Hallazgo:**
 - `dst_bytes` es la variable con **mayor diferencia** entre datos normales y anomalías.
@@ -198,7 +198,7 @@ A partir del análisis de anomalías y la **matriz de correlación**, encontramo
 
 ---
 
-# 🔍 2️⃣ `dst_host_count` sugiere ataques dirigidos (Diferencia: +66.09)
+###  🔍 2️⃣ `dst_host_count` sugiere ataques dirigidos (Diferencia: +66.09)
 
  📌 **Hallazgo:**
 - `dst_host_count` representa **el número de hosts con los que se comunica una IP**.
@@ -216,7 +216,7 @@ A partir del análisis de anomalías y la **matriz de correlación**, encontramo
 
 ---
 
-# 🔍 3️⃣ `duration` es mucho mayor en anomalías (+47.98 seg.)
+###  🔍 3️⃣ `duration` es mucho mayor en anomalías (+47.98 seg.)
 
  📌 **Hallazgo:**
 - En anomalías, la duración de conexión es **significativamente más larga** que en el tráfico normal.
@@ -233,7 +233,7 @@ A partir del análisis de anomalías y la **matriz de correlación**, encontramo
 
 ---
 
-# 🔍 4️⃣ `src_bytes` tiene un comportamiento anómalo en anomalías (+2.60)
+### 🔍 4️⃣ `src_bytes` tiene un comportamiento anómalo en anomalías (+2.60)
 
  📌 **Hallazgo:**
 - `src_bytes` muestra un aumento en anomalías, pero su correlación con `count` en la matriz de correlación es extremadamente alta (0.99).
@@ -251,7 +251,7 @@ A partir del análisis de anomalías y la **matriz de correlación**, encontramo
 
 ---
 
-# 🔍 5️⃣ `count` alto en anomalías sugiere actividad automatizada (+0.51)
+###  🔍 5️⃣ `count` alto en anomalías sugiere actividad automatizada (+0.51)
 
  📌 **Hallazgo:**
 - `count` indica la cantidad de conexiones activas.
