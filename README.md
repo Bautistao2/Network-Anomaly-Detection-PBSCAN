@@ -15,11 +15,11 @@
 
 ### **Principales Características:**  
 
-✅ **Preprocesamiento avanzado de datos 📊 con RobustScaler.** 
-✅ **Reducción de dimensionalidad ⚡ con PCA.**  
-✅ **Clusterización inteligente 🤖 con PBSCAN.** 
-✅ **Visualización de anomalías 🔎 en gráficos de dispersión.** 
-✅ **API en tiempo real 🌍 usando FastAPI..** 
+✅ **Preprocesamiento avanzado de datos 📊 con RobustScaler.** .
+✅ **Reducción de dimensionalidad ⚡ con PCA.**  .
+✅ **Clusterización inteligente 🤖 con PBSCAN.** .
+✅ **Visualización de anomalías 🔎 en gráficos de dispersión.** .
+✅ **API en tiempo real 🌍 usando FastAPI..** .
   
 
 
@@ -145,8 +145,6 @@ curl -X 'POST' 'http://127.0.0.1:8000/predecir' \
 ---
 
 ## 🔥 **Insights Clave del Análisis de Anomalías**
-# 📊 Insights Mejorados con Matriz de Correlación
-
 A partir del análisis de anomalías y la **matriz de correlación**, encontramos patrones clave que refuerzan la detección de actividad sospechosa en la red.
 
 ---
