@@ -39,7 +39,7 @@
 │   ├── 📄 distancia.py          # Cálculo de epsilon óptimo
 │   ├── 📄 anomaly_detection.py  # Visualización de anomalías
 │   ├── 📄download_and_process.py  # Script para descarga y procesamiento de datos
-│   ├── 📄analize_anomalies.py  # Script para descarga y procesamiento de datos
+│   ├── 📄analize_anomalies.py  # Script para analizar anomalias mediante graficos
 ├── 📁 data                     # Dataset KDDCup
 ├── 📁 results                  # Gráficos y resultados
 └── 📄 README.md                # Este archivo 😃
@@ -63,7 +63,7 @@
 
 ### **1️⃣ Clonar el Repositorio**  
 ```bash
-git clone https://github.com/tuusuario/Network-Anomaly-Detection-PBSCAN.git
+git clone https://github.com/bautistao2/Network-Anomaly-Detection-PBSCAN.git
 cd Network-Anomaly-Detection-PBSCAN
 ```
 
