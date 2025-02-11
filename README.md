@@ -1,4 +1,3 @@
-# Network-Anomaly-Detection-PBSCAN
 # 🚀 Network Anomaly Detection with PBSCAN & FastAPI  
 🛡️ **Detección de Anomalías en Tráfico de Red usando PBSCAN y Machine Learning**  
 
@@ -7,6 +6,7 @@
 ---
 
 ## **📚 Descripción**  
+
 🔍 Este proyecto implementa un **sistema inteligente** de detección de anomalías en tráfico de red utilizando **PBSCAN (DBSCAN optimizado)**.  
 
 ✔️ Permite preprocesar datos, reducir dimensiones con **PCA**, entrenar un modelo y hacer **predicciones en tiempo real** vía API.  
@@ -25,8 +25,6 @@
 
 -✅ **API en tiempo real 🌍 usando FastAPI..** .
   
-
-
 ---
 
 ## **📂 Estructura del Proyecto**  
@@ -40,9 +38,13 @@
 │   ├── 📄 data_preprocessing.py # Normalización y limpieza
 │   ├── 📄 distancia.py          # Cálculo de epsilon óptimo
 │   ├── 📄 anomaly_detection.py  # Visualización de anomalías
+│   ├── 📄download_and_process.py  # Script para descarga y procesamiento de datos
+│   ├── 📄analize_anomalies.py  # Script para descarga y procesamiento de datos
 ├── 📁 data                     # Dataset KDDCup
 ├── 📁 results                  # Gráficos y resultados
-└── 📄 README.md                 # Este archivo 😃
+└── 📄 README.md                # Este archivo 😃
+└── 📄 requirements.txt         # Dependencias y librerias del proyecto
+
 ```
 
 ---
@@ -83,13 +85,18 @@ pip install -r requirements.txt
 
 ## ⚙️ **Pipeline de Detección de Anomalías**
 
-### 1️⃣ **Carga y Preprocesamiento de Datos** 📊
+### 1️⃣   **Descarga y Procesamiento de Datos** 📥
+
+- download_and_process.py permite descargar y preparar los datos automáticamente.
+- Convierte datos crudos en un formato limpio y estructurado para el modelo.
+
+### 2️⃣ **Carga y Preprocesamiento de Datos** 📊
 
 - Se carga el dataset `KDDCup`.
 - Se seleccionan las **variables más relevantes**.
 - Se normalizan los datos con `RobustScaler` para manejar valores extremos.
 
-### 2️⃣ **Cálculo del ****`eps`**** para PBSCAN** 🔢
+### 3️⃣ **Cálculo del ****`eps`**** para PBSCAN** 🔢
 
 - Se usa `NearestNeighbors` para calcular la distancia al **4º vecino más cercano**.
 - Se usa la fórmula:
@@ -98,13 +105,14 @@ pip install -r requirements.txt
   ```
 - Esto permite encontrar un **umbral óptimo** para separar tráfico normal de anomalías.
 
-### 3️⃣ **Aplicación de PBSCAN** 🤖
+### 4️⃣ **Aplicación de PBSCAN** 🤖
 
 - Se usa `DBSCAN` con `eps=optimal_eps` y `min_samples` dinámico.
 - Los puntos con **etiqueta ****`-1`** son considerados anomalías.
 - Se calculan centroides de los clusters para filtrar **falsos positivos**.
 
-### 4️⃣ **Visualización y Reportes** 📈
+
+### 5️⃣ **Visualización y Reportes** 📈
 
 - Se generan **gráficos de dispersión** mostrando anomalías.
 - Se usa **Seaborn** para analizar correlaciones en los datos.
@@ -156,6 +164,12 @@ curl -X 'POST' 'http://127.0.0.1:8000/predecir' \
   "cluster": -1
 }
 ```
+## 📊 **Ejemplo de Visualización de Resultados** ##
+
+📌 Aquí se pueden ver las anomalías resaltadas en rojo, indicando tráfico inusual.
+
+![anomalies](results/anomalies.png)
+
 
 ---
 
@@ -279,8 +293,8 @@ A partir del análisis de anomalías y la **matriz de correlación**, encontramo
 ---
 
 ## ✨ **Autores y Contribución**
-Este proyecto fue desarrollado por 🧑‍💻 **[Ilyd Bautista]**. ¡Las contribuciones son bienvenidas! Si deseas mejorar este sistema de detección, crea un **Pull Request** o abre un **Issue** en el repositorio. 💡
+Este proyecto fue desarrollado por 🧑‍💻 **Ilyd Bautista**. ¡Las contribuciones son bienvenidas! Si deseas mejorar este sistema de detección, crea un **Pull Request** o abre un **Issue** en el repositorio. 💡
 
-📬 **Contacto:** [bautistaosta1@gmail.com](mailto:bautistaosta1@gmail.comcom)
+📬 **Contacto:** [bautistaosta1@gmail.com](mailto:bautistaosta1@gmail.com)
 
 🌟 **Si te gustó este proyecto, dale una estrella ⭐ en GitHub!**
