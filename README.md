@@ -15,11 +15,15 @@
 
 ### **Principales Características:**  
 
-✅ **Preprocesamiento avanzado de datos 📊 con RobustScaler.** .
-✅ **Reducción de dimensionalidad ⚡ con PCA.**  .
-✅ **Clusterización inteligente 🤖 con PBSCAN.** .
-✅ **Visualización de anomalías 🔎 en gráficos de dispersión.** .
-✅ **API en tiempo real 🌍 usando FastAPI..** .
+-✅ **Preprocesamiento avanzado de datos 📊 con RobustScaler.** .
+
+-✅ **Reducción de dimensionalidad ⚡ con PCA.**  .
+
+-✅ **Clusterización inteligente 🤖 con PBSCAN.** .
+
+-✅ **Visualización de anomalías 🔎 en gráficos de dispersión.** .
+
+-✅ **API en tiempo real 🌍 usando FastAPI..** .
   
 
 
@@ -41,6 +45,17 @@
 └── 📄 README.md                 # Este archivo 😃
 ```
 
+---
+
+### 📌 **Tecnologías utilizadas:** 
+- 🐍 **Python 3.9+**
+- ⚡ **FastAPI** (Para detección en tiempo real)
+- 📊 **Pandas, NumPy** (Manejo de datos)
+- 🎨 **Seaborn, Matplotlib** (Visualización de anomalías)
+- 🧠 **Scikit-learn** (PCA, DBSCAN)
+- 🔍 **PBSCAN (DBSCAN optimizado para detección de anomalías)**
+
+---
 
 ## **⚙️ Instalación y Configuración**  
 
