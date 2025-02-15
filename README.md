@@ -38,15 +38,14 @@
 │   ├── 📄 data_preprocessing.py # Normalización y limpieza
 │   ├── 📄 distancia.py          # Cálculo de epsilon óptimo
 │   ├── 📄 anomaly_detection.py  # Visualización de anomalías
-│   ├── 📄download_and_process.py  # Script para descarga y procesamiento de datos
-│   ├── 📄analize_anomalies.py  # Script para analizar anomalias mediante graficos
+│   ├── 📄 download_and_process.py  # Script para descarga y procesamiento de datos
+│   ├── 📄 analize_anomalies.py  # Script para analizar anomalias mediante graficos
 ├── 📁 data                     # Dataset KDDCup
 ├── 📁 results                  # Gráficos y resultados
 └── 📄 README.md                # Este archivo 😃
 └── 📄 requirements.txt         # Dependencias y librerias del proyecto
 
 ```
-
 ---
 
 ### 📌 **Tecnologías utilizadas:** 
@@ -293,6 +292,7 @@ A partir del análisis de anomalías y la **matriz de correlación**, encontramo
 ---
 
 ## ✨ **Autores y Contribución**
+
 Este proyecto fue desarrollado por 🧑‍💻 **Ilyd Bautista**. ¡Las contribuciones son bienvenidas! Si deseas mejorar este sistema de detección, crea un **Pull Request** o abre un **Issue** en el repositorio. 💡
 
 📬 **Contacto:** [bautistaosta1@gmail.com](mailto:bautistaosta1@gmail.com)
